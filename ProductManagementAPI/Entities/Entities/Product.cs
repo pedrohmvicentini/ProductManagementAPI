@@ -37,5 +37,6 @@ namespace Entities.Entities
         public string UserId { get; set; }
 
         public virtual ApplicationUser ApplicationUser { get; set; }
+        public virtual Sponsor Sponsor { get; set; }
     }
 }

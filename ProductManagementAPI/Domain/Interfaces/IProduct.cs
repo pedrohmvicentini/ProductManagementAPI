@@ -6,6 +6,6 @@ namespace Domain.Interfaces
 {
     public interface IProduct : IGeneric<Product>
     {
-        Task<List<Product>> ListProducts(Expression<Func<Product, bool>> expression);
+        Task<List<Product>> ListProducts(Expression<Func<Product, bool>> expression, int pageIndex, int pageSize);
     }
 }

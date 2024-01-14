@@ -3,6 +3,7 @@ using Entities.Entities;
 using Infrastructure.Configuration;
 using Infrastructure.Repository.Generics;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace Infrastructure.Repository.Repositories
@@ -15,11 +16,18 @@ namespace Infrastructure.Repository.Repositories
             _OptionsBuilder = new DbContextOptions<ContextBase>();
         }
 
-        public async Task<List<Product>> ListProducts(Expression<Func<Product, bool>> expression)
+        public async Task<List<Product>> ListProducts(Expression<Func<Product, bool>> expression, int pageIndex, int pageSize)
         {
             using (var contextBase = new ContextBase(_OptionsBuilder))
             {
-                return await contextBase.Products.Where(expression).AsNoTracking().ToListAsync();
+                if (pageIndex == 0 || pageSize == 0)
+                    return await contextBase.Products.Where(expression).AsNoTracking().ToListAsync();
+                else
+                    return await contextBase.Products.Where(expression)
+                        .Skip((pageIndex - 1) * pageSize)
+                        .Take(pageSize)
+                        .AsNoTracking()
+                        .ToListAsync();
             }
         }
     }

@@ -7,10 +7,12 @@ namespace Domain.Services
     public class ServiceProduct : IServiceProduct
     {
         private readonly IProduct _IProduct;
+        private readonly ISponsor _ISponsor;
 
-        public ServiceProduct(IProduct iProduct)
+        public ServiceProduct(IProduct iProduct, ISponsor iSponsor)
         {
             _IProduct = iProduct;
+            _ISponsor = iSponsor;
         }
 
         public async Task Add(Product product)
@@ -56,7 +58,7 @@ namespace Domain.Services
 
         public async Task Delete(Product product)
         {
-            if (product!= null && product.Id > 0)
+            if (product != null && product.Id > 0)
             {
                 Product data = await _IProduct.GetEntityById(product.Id);
 
@@ -69,9 +71,21 @@ namespace Domain.Services
             }
         }
 
-        public async Task<List<Product>> ListActivesProducts()
+        public async Task<List<Product>> ListActivesProducts(int id, string description, int pageIndex, int pageSize)
         {
-            return await _IProduct.ListProducts(n => n.Active);
+            List<Product> products = await _IProduct.ListProducts(
+                n => (n.Id == id || id == 0)
+                    && (n.Description.Contains(description) || string.IsNullOrWhiteSpace(description))
+                    && n.Active,
+                pageIndex, pageSize);
+
+            foreach (Product product in products)
+            {
+                if (product.SponsorId > 0)
+                    product.Sponsor = await _ISponsor.GetEntityById(product.SponsorId);
+            }
+
+            return products;
         }
     }
 }

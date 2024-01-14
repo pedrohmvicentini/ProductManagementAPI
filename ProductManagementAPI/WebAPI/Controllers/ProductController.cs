@@ -92,9 +92,9 @@ namespace WebAPI.Controllers
         [Authorize]
         [Produces("application/json")]
         [HttpPost("/api/product/ListActivesProducts")]
-        public async Task<List<ProductViewModel>> ListActivesProducts()
+        public async Task<List<ProductViewModel>> ListActivesProducts(SearchProductsViewModel searchProductsVM)
         {
-            var products = await _IServiceProduct.ListActivesProducts();
+            var products = await _IServiceProduct.ListActivesProducts(searchProductsVM.Id, searchProductsVM.Description, searchProductsVM.PageIndex, searchProductsVM.PageSize);
             var productMap = _IMapper.Map<List<ProductViewModel>>(products);
             return productMap;
         }

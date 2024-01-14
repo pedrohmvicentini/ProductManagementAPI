@@ -116,7 +116,15 @@ namespace TestProject
         {
             Helper helper = new Helper();
 
-            var result = helper.execApiPost(true, ENDPOINT, "ListActivesProducts").Result;
+            var data = new
+            {
+                id = 0,
+                description = string.Empty, //"test product 13/01/2024 19:15:48",
+                pageIndex = 1,
+                pageSize = 2
+            };
+
+            var result = helper.execApiPost(true, ENDPOINT, "ListActivesProducts", data).Result;
 
             Assert.AreEqual(result, HttpStatusCode.OK);
         }

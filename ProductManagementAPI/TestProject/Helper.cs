@@ -1,7 +1,4 @@
-﻿using Entities.Entities;
-using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
 using System.Net;
 using System.Net.Http.Headers;
 using System.Text;
@@ -90,7 +87,7 @@ namespace TestProject
 
                     if (!string.IsNullOrWhiteSpace(result))
                     {
-                        if(result.Contains("error"))
+                        if (result.Contains("\"error\":true"))
                             return HttpStatusCode.BadRequest;
                     }
                 }

@@ -1,4 +1,6 @@
-﻿namespace WebAPI.Models
+﻿using Entities.Entities;
+
+namespace WebAPI.Models
 {
     public class ProductViewModel
     {
@@ -21,5 +23,7 @@
         public int SponsorId { get; set; }
 
         public string UserId { get; set; }
+
+        public Sponsor? Sponsor { get; set; }
     }
 }
