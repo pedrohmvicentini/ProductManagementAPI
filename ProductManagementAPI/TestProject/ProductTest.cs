@@ -14,16 +14,10 @@ namespace TestProject
 
             var data = new
             {
-                id = 0,
                 description = "test product " + DateTime.Now.ToString(),
                 BestBeforeAt = DateTime.Now.AddMonths(3),
                 ManufacturingDate = DateTime.Now,
-                active = true,
-                createdAt = DateTime.Now,
-                updatedAt = DateTime.Now,
-                deletedAt = DBNull.Value,
-                SponsorId = 1,
-                UserId = Guid.NewGuid()
+                SponsorId = 1
             };
 
             var result = helper.execApiPost(true, ENDPOINT, "Add", data).Result;
@@ -38,16 +32,10 @@ namespace TestProject
 
             var data = new
             {
-                id = 0,
                 description = "test product " + DateTime.Now.ToString(),
                 BestBeforeAt = DateTime.Now,
                 ManufacturingDate = DateTime.Now.AddMonths(3),
-                active = true,
-                createdAt = DateTime.Now,
-                updatedAt = DateTime.Now,
-                deletedAt = DBNull.Value,
-                SponsorId = 1,
-                UserId = Guid.NewGuid()
+                SponsorId = 1
             };
 
             var result = helper.execApiPost(true, ENDPOINT, "Add", data).Result;
@@ -65,12 +53,7 @@ namespace TestProject
                 id = 1,
                 description = "test product update" + DateTime.Now.ToString(),
                 BestBeforeAt = DateTime.Now.AddMonths(5),
-                ManufacturingDate = DateTime.Now.AddDays(-1),
-                active = true,
-                createdAt = DateTime.Now,
-                updatedAt = DateTime.Now,
-                deletedAt = DBNull.Value,
-                UserId = Guid.NewGuid()
+                ManufacturingDate = DateTime.Now.AddDays(-1)
             };
 
             var result = helper.execApiPost(true, ENDPOINT, "Update", data).Result;
@@ -85,15 +68,7 @@ namespace TestProject
 
             var data = new
             {
-                id = 1,
-                description = "delete product",
-                BestBeforeAt = DateTime.Now,
-                ManufacturingDate = DateTime.Now,
-                active = false,
-                createdAt = DateTime.Now,
-                updatedAt = DateTime.Now,
-                deletedAt = DateTime.Now,
-                UserId = Guid.NewGuid()
+                id = 1
             };
 
             var result = helper.execApiPost(true, ENDPOINT, "Delete", data).Result;
@@ -136,15 +111,7 @@ namespace TestProject
 
             var data = new
             {
-                id = 1,
-                description = "get product",
-                BestBeforeAt = DateTime.Now,
-                ManufacturingDate = DateTime.Now,
-                active = true,
-                createdAt = DateTime.Now,
-                updatedAt = DateTime.Now,
-                deletedAt = DateTime.Now,
-                UserId = Guid.NewGuid()
+                id = 1
             };
 
             var result = helper.execApiPost(true, ENDPOINT, "GetEntityById", data).Result;

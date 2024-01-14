@@ -74,9 +74,14 @@ namespace WebAPI.Controllers
         [HttpPost("/api/product/GetEntityById")]
         public async Task<ProductViewModel> GetEntityById(ProductViewModel product)
         {
-            var ret = await _IProduct.GetEntityById(product.Id);
-            var productMap = _IMapper.Map<ProductViewModel>(ret);
-            return productMap;
+            if (product != null && product.Id != null && product.Id > 0)
+            {
+                var ret = await _IProduct.GetEntityById((int)product.Id);
+                var productMap = _IMapper.Map<ProductViewModel>(ret);
+                return productMap;
+            }
+            else
+                return null;
         }
 
         [Authorize]

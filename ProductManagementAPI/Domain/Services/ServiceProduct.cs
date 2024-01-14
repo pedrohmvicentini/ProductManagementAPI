@@ -20,7 +20,7 @@ namespace Domain.Services
             var isValid = product.ValidateStringValue(product.Description, "Description");
             isValid = isValid ? product.ValidateDateValue(product.ManufacturingDate, "ManufacturingDate") : isValid;
             isValid = isValid ? product.ValidateDateValue(product.BestBeforeAt, "BestBeforeAt") : isValid;
-            isValid = isValid ? product.ValidateBetweenTwoDateValue(product.ManufacturingDate, product.BestBeforeAt, "ManufacturingDate", "Data de fabriação não pode ser menor ou igual data de validade.") : isValid;
+            isValid = isValid ? product.ValidateBetweenTwoDateValue(product.ManufacturingDate, product.BestBeforeAt, "ManufacturingDate", "Data de fabricação não pode ser menor ou igual data de validade.") : isValid;
             if (isValid)
             {
                 product.CreatedAt = DateTime.Now;
@@ -35,7 +35,7 @@ namespace Domain.Services
             var isValid = product.ValidateStringValue(product.Description, "Description");
             isValid = isValid ? product.ValidateDateValue(product.ManufacturingDate, "ManufacturingDate") : isValid;
             isValid = isValid ? product.ValidateDateValue(product.BestBeforeAt, "BestBeforeAt") : isValid;
-            isValid = isValid ? product.ValidateBetweenTwoDateValue(product.ManufacturingDate, product.BestBeforeAt, "ManufacturingDate", "Data de fabriação não pode ser menor ou igual data de validade.") : isValid;
+            isValid = isValid ? product.ValidateBetweenTwoDateValue(product.ManufacturingDate, product.BestBeforeAt, "ManufacturingDate", "Data de fabricação não pode ser menor ou igual data de validade.") : isValid;
             if (isValid)
             {
                 if (product != null && product.Id > 0)
