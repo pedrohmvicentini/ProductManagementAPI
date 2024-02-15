@@ -50,7 +50,7 @@ namespace TestProject
 
             var data = new
             {
-                id = 1,
+                id = 14,
                 description = "test product update" + DateTime.Now.ToString(),
                 BestBeforeAt = DateTime.Now.AddMonths(5),
                 ManufacturingDate = DateTime.Now.AddDays(-1)
@@ -68,7 +68,7 @@ namespace TestProject
 
             var data = new
             {
-                id = 1
+                id = 14
             };
 
             var result = helper.execApiPost(true, ENDPOINT, "Delete", data).Result;
